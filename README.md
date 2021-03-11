@@ -13,6 +13,8 @@ Client web: http://localhost:8081/
 
 Client mobile: http://localhost:8081/client.apk
 
+DB viewer: http://localhost:8082
+
 Server: http://localhost:8080/about.json
 
 ### 🛠 Commands
