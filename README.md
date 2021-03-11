@@ -2,7 +2,7 @@
 
 #### Server & Web / Mobile client. Application that works like [IFTTT](https://ifttt.com/) / [Zapier](https://www.netvibes.com).
 
-[![Bomberman - Trailer](preview3.jpg)](https://www.youtube.com/watch?v=WFw_Whjj51k "Click to Watch!")
+[![Area - Trailer](preview.jpg)](https://www.youtube.com/watch?v=WFw_Whjj51k "Click to Watch!")
 
 ### 💾 Install Docker Compose
 
