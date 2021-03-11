@@ -1,0 +1,132 @@
+# set builder image
+FROM node:14.15-alpine AS builder
+
+# set the working directory in the container
+WORKDIR /build
+
+# copy the dependencies file to the working directory
+COPY package*.json ./
+
+# install dependencies
+RUN npm install --silent --no-fund
+
+# copy the src
+COPY ./ ./
+
+# compiles and minifies for production
+RUN npm run build
+
+RUN npx cap sync android
+
+# https://github.com/mingchen/docker-android-build-box
+FROM ubuntu:18.04
+
+ENV ANDROID_HOME="/opt/android-sdk" \
+    JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/"
+
+ENV TZ=America/Los_Angeles
+
+# Get the latest version from https://developer.android.com/studio/index.html
+ENV ANDROID_SDK_TOOLS_VERSION="4333796"
+
+# nodejs version
+ENV NODE_VERSION="12.x"
+
+# Set locale
+ENV LANG="en_US.UTF-8" \
+    LANGUAGE="en_US.UTF-8" \
+    LC_ALL="en_US.UTF-8"
+
+RUN apt-get clean && \
+    apt-get update -qq && \
+    apt-get install -qq -y apt-utils locales && \
+    locale-gen $LANG
+
+ENV DEBIAN_FRONTEND="noninteractive" \
+    TERM=dumb \
+    DEBIAN_FRONTEND=noninteractive
+
+# Variables must be references after they are created
+ENV ANDROID_SDK_HOME="$ANDROID_HOME"
+
+ENV PATH="$JAVA_HOME/bin:$PATH:$ANDROID_SDK_HOME/emulator:$ANDROID_SDK_HOME/tools/bin:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/platform-tools"
+
+WORKDIR /tmp
+
+# Installing packages
+RUN echo "installing packages" && \
+    apt-get update -qq > /dev/null && \
+    apt-get install -qq locales > /dev/null && \
+    locale-gen "$LANG" > /dev/null && \
+    apt-get install -qq --no-install-recommends \
+        autoconf \
+        build-essential \
+        curl \
+        file \
+        git \
+        gpg-agent \
+        less \
+        openjdk-8-jdk \
+        openjdk-11-jdk \
+        openssh-client \
+        unzip \
+        wget \
+        zip \
+        zlib1g-dev > /dev/null
+
+RUN echo "set timezone" && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN echo "nodejs, npm, capacitor" && \
+    curl -sL -k https://deb.nodesource.com/setup_${NODE_VERSION} \
+        | bash - > /dev/null && \
+    apt-get install -qq nodejs > /dev/null && \
+    npm install --quiet -g npm > /dev/null
+
+RUN echo "clear cache" && \
+    apt-get clean > /dev/null && \
+    rm -rf /var/lib/apt/lists/ && \
+    npm cache clean --force > /dev/null && \
+    rm -rf /tmp/* /var/tmp/*
+
+# Install Android SDK
+RUN echo "sdk tools ${ANDROID_SDK_TOOLS_VERSION}" && \
+    wget --quiet --output-document=sdk-tools.zip \
+        "https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS_VERSION}.zip" && \
+    mkdir --parents "$ANDROID_HOME" && \
+    unzip -q sdk-tools.zip -d "$ANDROID_HOME" && \
+    rm --force sdk-tools.zip
+
+# Install SDKs
+# Please keep these in descending order!
+# The `yes` is for accepting all non-standard tool licenses.
+RUN mkdir --parents "$HOME/.android/" && \
+    echo '### User Sources for Android SDK Manager' > \
+        "$HOME/.android/repositories.cfg" && \
+    yes | "$ANDROID_HOME"/tools/bin/sdkmanager --licenses > /dev/null
+
+# RUN echo "platforms" && \
+#     yes | "$ANDROID_HOME"/tools/bin/sdkmanager \
+#         "platforms;android-30" > /dev/null
+
+# RUN echo "platform tools" && \
+#     yes | "$ANDROID_HOME"/tools/bin/sdkmanager \
+#         "platform-tools" > /dev/null
+
+# RUN echo "build tools 30" && \
+#     yes | "$ANDROID_HOME"/tools/bin/sdkmanager \
+#         "build-tools;30.0.0" > /dev/null
+
+# Get Capacitor project
+
+COPY --from=builder /build /project
+
+WORKDIR /project/android
+
+# Build APK
+
+RUN ./gradlew assembleDebug
+
+RUN mkdir -p /dist && cp app/build/outputs/apk/debug/app-debug.apk /dist/client.apk
+
+RUN ls -la /dist/client.apk

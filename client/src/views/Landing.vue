@@ -1,0 +1,150 @@
+<template>
+    <div class="relative min-w-full h-full overflow-hidden">
+        <div class="hero__text w-full h-full flex justify-center items-center text-center">
+            <div class="relative max-w-md flex flex-col items-center">
+                <div class="hero__back"></div>
+                <svg class="w-64 p-6 op" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                    <g fill="#000000" stroke="none">
+                        <rect style="display: none; fill: #fff" width="392.90045" height="352.98315" x="55.313995" y="71.28093" />
+                        <path
+                            class="area-icon"
+                            d="M 453.7037,0 C 493.0932,0 500,7.6709084 500,46.296296 V 453.7037 C 500,492.66585 492.82996,500 453.7037,500 H 46.296296 C 6.25245,500 0,493.7355 0,453.7037 V 46.296296 C 0,5.6305256 5.9266328,0 46.296296,0 Z m -215,85.406263 c -4.25926,3.333334 -4.44444,4.814815 -5,28.333337 -0.37037,13.51852 -1.48148,25.37037 -2.4074,26.29629 -0.92593,1.11111 -3.70371,-0.18518 -7.22223,-3.51852 -11.48148,-11.11111 -29.62963,-4.44444 -29.62963,10.74075 0,5 3.51852,9.25925 24.62963,30.37037 22.03704,22.03703 25.18519,24.62962 30.92593,24.62962 5.74074,0 8.88889,-2.59259 30.92593,-24.62962 26.85185,-26.85186 28.88889,-30.74075 20.92592,-40.74075 -6.85185,-8.7037 -17.03703,-8.33333 -27.4074,1.11112 -2.5926,2.4074 -4.81482,3.14814 -5.74075,2.03703 -0.92592,-0.92592 -2.03703,-12.77777 -2.4074,-26.29629 -0.55556,-23.518522 -0.74074,-25.000003 -5,-28.333337 -2.5926,-2.037037 -7.22223,-3.518518 -11.2963,-3.518518 -4.07407,0 -8.7037,1.481481 -11.2963,3.518518 z m -1.85185,149.999997 c -4.25926,4.25926 -5.37037,7.03704 -5.37037,13.14815 0,18.88889 25.74074,25.74074 34.44445,9.07407 9.81481,-19.25926 -13.88889,-37.22222 -29.07408,-22.22222 z m 77.77778,27.77778 c -3.51852,2.77778 -4.44444,5.37037 -4.44444,12.03703 0,8.33334 0.37037,8.70371 22.03703,30.55556 19.07408,19.07407 21.85185,22.59259 19.81482,25 -1.48148,1.85185 -5.37037,2.96296 -9.62963,2.96296 -9.62963,0 -14.62963,5 -14.62963,14.62963 0,4.25926 1.48148,8.88889 3.51852,11.48148 3.51852,4.25926 4.62963,4.44445 34.62963,5 33.88889,0.74075 37.96296,0.18519 43.33333,-5.18518 3.51852,-3.51852 3.7037,-6.2963 3.7037,-38.88889 0,-35 0,-35.37037 -4.62963,-39.81481 -10.18518,-10.18519 -25,-2.77778 -25,12.59259 0,5.37037 -1.11111,9.07407 -2.96296,10.74074 -2.59259,2.22222 -5.74074,-0.37037 -25.55555,-21.11111 -20.74075,-21.66667 -22.96297,-23.51852 -29.07408,-23.51852 -3.88889,0 -8.7037,1.48148 -11.11111,3.51852 z M 145.18519,281.147 c -23.14815,24.25926 -26.85186,25.92593 -28.70371,12.03704 -1.11111,-8.88889 -8.14815,-16.85185 -14.62963,-16.85185 -5.925924,0 -12.407405,3.88888 -14.629628,8.7037 -2.777777,5.92593 -2.777777,65.55556 0,71.48148 3.518519,7.59259 9.074075,8.7037 42.407408,8.7037 29.81481,0 31.48148,-0.18518 36.11111,-4.25925 2.77778,-2.40741 5.18519,-6.85186 5.92593,-10.92593 1.48148,-9.25926 -5.37037,-16.2963 -15.74074,-16.2963 -4.25926,0 -8.33334,-1.11111 -9.62963,-2.77777 -2.03704,-2.5926 0.74074,-6.2963 20,-25.74075 20.37037,-20.37037 22.59259,-23.33333 22.59259,-29.25925 0,-10 -5.92593,-16.2963 -15.37037,-16.2963 -7.59259,0 -8.51852,0.74074 -28.33333,21.48148 z m 94.25926,12.59259 c -5.18519,4.44445 -5.18519,4.81482 -5.74075,29.25926 -0.37037,13.51852 -1.48148,25.37037 -2.4074,26.2963 -0.92593,1.11111 -3.70371,-0.18519 -7.22223,-3.51852 -11.48148,-11.11111 -29.62963,-4.44444 -29.62963,10.74074 0,5 3.33334,9.07408 23.70371,29.44445 23.14815,23.14814 23.88889,23.7037 31.85185,23.7037 7.96296,0 8.7037,-0.55556 31.85185,-23.7037 25.92593,-25.74075 27.77778,-29.81482 20,-39.81482 -6.85185,-8.7037 -17.03703,-8.33333 -27.4074,1.11111 -2.5926,2.40741 -4.81482,3.14815 -5.74075,2.03704 -0.92592,-0.92593 -2.03703,-12.77778 -2.4074,-26.2963 -0.55556,-24.44444 -0.55556,-24.81481 -5.74074,-29.25926 -2.96297,-2.4074 -7.5926,-4.44444 -10.55556,-4.44444 -2.96296,0 -7.59259,2.03704 -10.55555,4.44444 z"
+                        />
+                    </g>
+                </svg>
+                <h1 class="mb-5 text-5xl font-bold">This is AREA</h1>
+                <p class="mb-5">
+                    This software suite that functions similar to that of IFTTT and/or Zapier. Please login or register for use
+                    AREA services.
+                </p>
+                <div class="flex justify-center">
+                    <router-link :to="{ name: 'SignIn' }" class="btn btn-primary shadow-lg">Login</router-link>
+                    <router-link :to="{ name: 'SignUp' }" class="btn btn-ghost">Register</router-link>
+                </div>
+            </div>
+        </div>
+        <div class="hero__noise" :style="{ backgroundImage: `url(${require(`@/assets/noise.png`)})` }"></div>
+        <div class="hero__circle1"></div>
+        <div class="hero__box"></div>
+        <div class="hero__circle2"></div>
+        <div class="hero__circle3"></div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'Landing',
+}
+</script>
+
+<style scoped>
+.area-icon {
+    fill: hsl(var(--c8, 223 14% 10%));
+}
+
+.hero__text {
+    z-index: 7;
+    position: inherit;
+}
+
+.hero__back {
+    z-index: -1;
+    position: absolute;
+    opacity: 0.5;
+    left: -20px;
+    right: -20px;
+    top: -10px;
+    bottom: -30px;
+    background-color: hsl(var(--d, 223 14% 10%));
+    border-radius: 2vw;
+    -webkit-filter: blur(1em);
+    filter: blur(1em);
+}
+
+.hero__noise {
+    z-index: 5;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    opacity: 0.1;
+    background-size: 15rem;
+}
+
+.hero__circle1 {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: auto;
+    bottom: auto;
+    z-index: 2;
+    width: 31.94em;
+    height: 31.94em;
+    margin-top: -8em;
+    margin-left: -8em;
+    border-radius: 100vw;
+    background-color: hsl(var(--p2, 223 14% 10%));
+    -webkit-filter: blur(5.6em);
+    filter: blur(5.6em);
+}
+
+.hero__box {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    right: auto;
+    bottom: auto;
+    z-index: 1;
+    width: 30.69em;
+    height: 30.69em;
+    margin-top: 1em;
+    margin-left: 2em;
+    background-color: hsl(var(--s2, 223 14% 10%));
+    -webkit-filter: blur(5em);
+    filter: blur(5em);
+    -webkit-transform: rotate(37.61deg);
+    -ms-transform: rotate(37.61deg);
+    transform: rotate(37.61deg);
+}
+
+.hero__circle2 {
+    position: absolute;
+    left: auto;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    width: 52em;
+    height: 34.4em;
+    margin-right: -10em;
+    margin-bottom: -5em;
+    border-radius: 50%;
+    background-image: linear-gradient(292deg, hsl(var(--a2, 223 14% 10%)) 24%, hsl(var(--s2, 223 14% 10%)));
+    -webkit-filter: blur(5em);
+    filter: blur(5em);
+    -webkit-transform: rotate(48.1deg);
+    -ms-transform: rotate(48.1deg);
+    transform: rotate(48.1deg);
+}
+
+.hero__circle3 {
+    position: absolute;
+    left: auto;
+    top: auto;
+    right: 0%;
+    bottom: 0%;
+    z-index: 2;
+    width: 74.9em;
+    height: 30.06em;
+    margin-right: -15em;
+    margin-bottom: 3em;
+    border-radius: 50%;
+    background-color: hsl(var(--p2, 223 14% 10%));
+    -webkit-filter: blur(4.4em);
+    filter: blur(4.4em);
+    -webkit-transform: rotate(-37deg);
+    -ms-transform: rotate(-37deg);
+    transform: rotate(-37deg);
+}
+</style>

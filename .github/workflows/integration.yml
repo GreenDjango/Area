@@ -1,0 +1,55 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache Primes
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.hello
+          key: ${{ runner.os }}-docker-${{ hashFiles('**/Dockerfile') }}-${{ hashFiles('**/docker-compose.*') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
+
+      - name: load docker cache
+        run: |
+          docker load -i ~/.hello/nginx.tar || true
+          docker load -i ~/.hello/node.tar || true
+          docker load -i ~/.hello/mongo.tar || true
+          docker load -i ~/.hello/mongo-express.tar || true
+          docker load -i ~/.hello/ubuntu.tar || true
+
+      - name: docker-compose up
+        run: |
+          docker-compose up --build --remove-orphans --detach
+
+      - name: curl /
+        run: |
+          sleep 10
+          curl --location --request GET 'http://localhost:8080'
+
+      - name: curl /about.json
+        run: |
+          curl --location --request GET 'http://localhost:8080/about.json'
+
+      - name: docker-compose down
+        run: |
+          docker-compose down
+
+      - name: save docker cache
+        run: |
+          mkdir -p ~/.hello
+          rm -rf *.tar
+          docker save -o ~/.hello/nginx.tar nginx:1.19-alpine
+          docker save -o ~/.hello/node.tar node:14.15-alpine
+          docker save -o ~/.hello/mongo.tar mongo:4.4
+          docker save -o ~/.hello/mongo-express.tar mongo-express:0.54
+          docker save -o ~/.hello/ubuntu.tar ubuntu:18.04

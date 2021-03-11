@@ -1,0 +1,73 @@
+version: "3.1"
+services:
+  mongo:
+    image: mongo:4.4
+    restart: on-failure
+    environment:
+      MONGO_INITDB_DATABASE: area
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    expose:
+      - "27017"
+    networks:
+      - backend
+
+  mongo-express:
+    image: mongo-express:0.54
+    restart: on-failure
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_BASICAUTH_USERNAME: mongo
+      ME_CONFIG_BASICAUTH_PASSWORD: express
+    ports:
+      - 8082:8081
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+  server:
+    build: ./server
+    image: area_server
+    restart: on-failure
+    environment:
+      MONGO_CONNECTION: mongodb://root:example@mongo:27017/admin
+    ports:
+      - "8080:9000"
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+  client_mobile:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.android
+    image: area_client_mobile
+    restart: on-failure
+    volumes:
+      - apk-volume:/dist:Z
+
+  client_web:
+    build: 
+      context: ./client
+      dockerfile: Dockerfile.nginx
+    image: area_client_web
+    restart: on-failure
+    ports:
+      - "8081:80"
+    volumes:
+      - apk-volume:/data/www/apk:Z
+    depends_on:
+      - server
+      - client_mobile
+
+volumes:
+  apk-volume:
+
+networks:
+  backend:

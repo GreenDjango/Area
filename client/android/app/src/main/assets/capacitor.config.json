@@ -1,0 +1,14 @@
+{
+  "appId": "com.epitech.area",
+  "appName": "Area",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "linuxAndroidStudioPath": "/home/theo/Téléchargements/progs_dl/android-studio/bin/studio.sh",
+  "cordova": {}
+}

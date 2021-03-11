@@ -2,7 +2,7 @@
 
 #### Server & Web / Mobile client. Application that works like [IFTTT](https://ifttt.com/) / [Zapier](https://www.netvibes.com).
 
-<img src="https://cdn.zapier.com/storage/photos/255072e217513b05819b0ef9e076234b.png" alt="zapier exemple" width="70%">
+[![Bomberman - Trailer](preview3.jpg)](https://www.youtube.com/watch?v=WFw_Whjj51k "Click to Watch!")
 
 ### 💾 Install Docker Compose
 
@@ -32,6 +32,8 @@ Stop & Delete all *(containers & networks)*: `docker-compose down`
 **Mobile client:** [Capacitor.js](https://capacitorjs.com/)
 
 ### 📚 Docs
+
+***AREA**: https://github.com/GreenDjango/Area/wiki*
 
 *Subject : https://intra.epitech.eu/module/2020/B-YEP-500/LYN-5-1/acti-439800/project/file/B-DEV-510_area.pdf*
 
